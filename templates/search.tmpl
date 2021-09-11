@@ -1,0 +1,96 @@
+{{ define "search.tmpl" }}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Searchingo</title>
+
+    <style>
+        body {
+            background-color: #0d1117;
+            height: 100vh;
+        }
+
+        .repos {
+            color: rgb(147, 197, 253);
+            padding:1rem;
+        }
+
+        .repos a {
+            color: rgb(147, 197, 253);
+            font-size: large;
+        }
+
+        .flexdiv {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap:5px;
+        }
+
+        .lang {
+            font-weight: 600;
+            color: rgba(229, 231, 235);
+            font-size: 1.5rem;
+            line-height: 2rem;
+            text-transform: capitalize;
+        }
+
+        .lines {
+            color: rgba(156, 163, 175);
+        }
+
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div>
+       <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+    </div>
+    <div class="repos">
+        <div class="flexdiv">
+            <h1 class="lang">{{ .search }}</h1>
+            <p class="lines">{{ printf "%d lines." .lines }}</p>
+        </div>
+
+        <div class="repos">
+            {{ range .repos }}
+            <li class="flexdiv">
+            <a href={{ printf "https://github.com/%s" .Repo.FullName }} target="_blank">{{ .Repo.FullName }}</a>
+            <p class="lines">{{ printf "%d lines." (index .Lines .Repo.Lang) }}</p>
+            </li>
+            {{ end }}
+        </div>
+    </div>
+
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    </script>
+</body>
+<html>
+{{ end }}

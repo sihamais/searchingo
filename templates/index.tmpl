@@ -1,0 +1,61 @@
+{{ define "index.tmpl" }}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Searchingo</title>
+
+    <style>
+        body {
+            background-color: #0d1117;
+            height: 100vh;
+            width: 100vw;
+            margin: 0px;
+        }
+
+        #searchForm {
+            width: 100vw;
+            place-self: center;
+            padding-top: 20px;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+            place-content: center;
+        }
+
+        #search {
+            width: 30%;
+            padding: 0.75rem;
+            border: solid 1px #30363d;
+            border-radius: 0.375rem;
+            font-size: large;
+            background-color: #161b22;
+            color: rgba(255, 255, 255, 0.801);
+        }
+
+        .searchbutton {
+            padding: 0.75rem;
+            border: solid 1px #30363d;
+            border-radius: 0.375rem;
+            font-size: large;
+            background-color: #161b22;
+            color: rgba(255, 255, 255, 0.801);
+        }
+
+        .searchbutton:hover {
+            background-color: #30363d;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="searchForm" action="/search" name="searchForm" autocomplete="off">
+        <input type="text" name="q" placeholder="Search for a language" id="search">
+        <input type="submit" value="Search" class="searchbutton">
+    </form>
+</body>
+<html>
+
+{{ end }}
