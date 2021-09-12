@@ -68,7 +68,7 @@ Open ```localhost:8080``` on your browser and then you're good to *go*.
 | :-------- | :------- | :-------------------------------- |
 | `q`      | `string` | **Required**. Language |
 
-## App structure
+## App Structure
 
 | Path                             | Description                       |
 | :------------------------------- | :-------------------------------- |
