@@ -55,13 +55,13 @@ Open ```localhost:8080``` on your browser and then you're good to *go*.
 
 #### Get the landing page
 
-```http
+```HTTP
   GET /
 ```
 
 #### Get search results
 
-```http
+```HTTP
   GET /search
 ```
 
