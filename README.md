@@ -48,7 +48,6 @@ Open ```localhost:8080``` on your browser and then you're good to *go*.
 - Browse the latest public repositories on github
 - Results sorted by number of bytes (desc) written in the chosen language
 - Statistics displayed in charts
-- Repository concurrent processing
 
   
 ## API Reference
@@ -93,7 +92,7 @@ This solutions uses another request which does not necessarily respect the instr
 
 The rate limit is still inevitable. However, it allows the user to browse the repositories without authentication.  
 
-The user will probably not be able to search more than 3 times in an hour. If the page takes too much time to load, it is probably because the rate limit have been reached. My trick in this case is to switch location in the VPN if the user has one.
+The user will probably not be able to search more than 3 times in an hour. If the page takes too much time to load, it is probably because the rate limit have been reached.
 
 ## Optimizations
 
