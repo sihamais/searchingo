@@ -2,7 +2,16 @@
 # Searchingo
 
 Searchingo is an app to browse the latest publics repos on Github. This app uses the Github API.
-  
+
+## Table of Content
+
+- [Run Locally](https://github.com/sihamais/searchingo#run-locally)
+- [Features](https://github.com/sihamais/searchingo#features)
+- [API Reference](https://github.com/sihamais/searchingo#api-reference)
+- [Lessons Learned](https://github.com/sihamais/searchingo#lessons-learned)
+- [Optimizations](https://github.com/sihamais/searchingo#optimizations)
+- [Tech Stack](https://github.com/sihamais/searchingo#tech-stack)
+- [Used Resources](https://github.com/sihamais/searchingo#used-resources)
 ## Run Locally
 
 Clone the project
@@ -31,7 +40,7 @@ Start the server
   go run main.go
 ```
 
-Open ```localhost:8080``` on your browser and then you're good to go.
+Open ```localhost:8080``` on your browser and then you're good to *go*.
 
   
 ## Features
@@ -40,6 +49,26 @@ Open ```localhost:8080``` on your browser and then you're good to go.
 - Results sorted by number of bytes (desc) written in the chosen language
 - Statistics displayed in charts
 - Parallel processing of the repos
+
+  
+## API Reference
+
+#### Get the landing page
+
+```http
+  GET /
+```
+
+#### Get search results
+
+```http
+  GET /search
+```
+
+| Query | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `q`      | `string` | **Required**. Name of a language |
+
 
   
 ## Lessons Learned
