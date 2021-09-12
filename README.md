@@ -45,10 +45,10 @@ Open ```localhost:8080``` on your browser and then you're good to *go*.
   
 ## Features
 
-- Browse the latest public repos on github
+- Browse the latest public repositories on github
 - Results sorted by number of bytes (desc) written in the chosen language
 - Statistics displayed in charts
-- Parallel processing of the repos
+- Repository concurrent processing
 
   
 ## API Reference
@@ -67,13 +67,13 @@ Open ```localhost:8080``` on your browser and then you're good to *go*.
 
 | Query | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `q`      | `string` | **Required**. Name of a language |
+| `q`      | `string` | **Required**. Language |
 
 
   
 ## Lessons Learned
 
-The real difficulty in this project is to find a way to process the data without overflowing the rate limit enforced by Github. The obvious approach for this project is to get the list of public repos: 
+The real difficulty in this project is to find a way to process data without overflowing the rate limit enforced by Github. The most obvious approach for this project would be to get the list of public repos: 
 ```HTTP
 GET /repositories
 ```
@@ -85,13 +85,13 @@ Two solutions were possible :
 
 This solution requires authentication from the user, which goes against the subject of the project which is supposed to allow browsing of public repositories without needing to authenticate.  
 
-Also, this solution is a double-edged sword since the limit is not canceled and the problem persists. 
+Also, it is a double-edged sword since the limit is not canceled and the problem persists. 
 
-#### 2. Use the Search API offered bu Github
+#### 2. Use the Search API offered by Github
 
 This solutions uses another request which does not necessarily respect the instructions of the project but displays the same result.  
 
-This solution is not ideal either since the rate limit is inevitable. However, it allows the user to be able to browse the repositories without needing to authenticate.  
+The rate limit is still inevitable. However, it allows the user to browse the repositories without authentication.  
 
 The user will probably not be able to search more than 3 times in an hour. If the page takes too much time to load, it is probably because the rate limit have been reached. My trick in this case is to switch location in the VPN if the user has one.
 
@@ -101,15 +101,11 @@ The user will probably not be able to search more than 3 times in an hour. If th
 Since Github API does not provide a method to get the number of lines, I've chose to display the number of bytes of the chosen language.   
 This does still demonstrate the scale of the repository. Thus, the list is sorted according to the number of bytes.
 
-#### 2. Proportion of each repository using the pie chart
-Since our metric is the number of bytes, the chart will relay on this statistics to display the proportion each repository represents.
+#### 2. Size of each repository using the pie chart
+Since our metric is the number of bytes, the chart will rely on this metric to display repository proportions.
 
-#### 3. Parallelisation
-I've used a goroutine to manage the threads and channels to send and receive repositories from the workers. The number of the workers is defined manually.
-
-
-
-
+#### 3. Concurrency
+The program uses goroutines and channels to concurrently fetch data of the repositories which uses the chosen language. The number of workers is defined manually.
 
   
 ## Tech Stack

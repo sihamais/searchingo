@@ -21,7 +21,7 @@ func Search(c *gin.Context) {
 	// Only do the next search on repos matching the lang searched
 	reposMatch, langStats := repos.FilterReposByLang(recentRepos, searchLang)
 
-	// Concurent search of the repos lang data
+	// Concurrent search of the repos lang data
 	results, err := repos.GetReposData(reposMatch)
 	if err != nil {
 		c.JSON(http.StatusRequestTimeout, gin.H{"Error": "Fetch Repositories Data"})
