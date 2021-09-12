@@ -68,6 +68,15 @@ Open ```localhost:8080``` on your browser and then you're good to *go*.
 | :-------- | :------- | :-------------------------------- |
 | `q`      | `string` | **Required**. Language |
 
+## App structure
+
+| Path                             | Description                       |
+| :------------------------------- | :-------------------------------- |
+| [cmd/main.go](https://github.com/sihamais/searchingo/blob/main/cmd/main.go)                    | Main |
+| [internal/models/repository.go](https://github.com/sihamais/searchingo/blob/main/internal/models/repository.go)  | Data models |
+| [repos/repos.go](https://github.com/sihamais/searchingo/blob/main/internal/repos/repos.go)                 | Logic functions used by routes |
+| [routes/*](https://github.com/sihamais/searchingo/tree/main/internal/routes)                      | API routes | 
+| [templates/*](https://github.com/sihamais/searchingo/tree/main/templates)                   | Template files for HTML rendering |
 
   
 ## Lessons Learned
@@ -98,18 +107,19 @@ The user will probably not be able to search more than 3 times in an hour. If th
 
 #### 1. Number of lines in the repository
 Since Github API does not provide a method to get the number of lines, I've chose to display the number of bytes of the chosen language.   
+
 This does still demonstrate the scale of the repository. Thus, the list is sorted according to the number of bytes.
 
 #### 2. Size of each repository using the pie chart
-Since our metric is the number of bytes, the chart will rely on this metric to display repository proportions.
+Since our metric is the number of bytes, the chart will rely on this metric to display repository sizes.
 
 #### 3. Concurrency
-The program uses goroutines and channels to concurrently fetch data of the repositories which uses the chosen language. The number of workers is defined manually.
+The program uses goroutines and channels to concurrently fetch data for the repositories which uses the chosen language. The number of workers is defined manually.
 
   
 ## Tech Stack
 
-**Client:** HTML, CSS, VanillaJS, Charts.js
+**Client:** HTML, CSS, VanillaJS, Chart.js
 
 **Server:** Go, Gin
 
@@ -126,6 +136,6 @@ The program uses goroutines and channels to concurrently fetch data of the repos
  - [Gin Web Framework](https://github.com/gin-gonic/gin#gin-web-framework)
  - [A Tour of Go](https://tour.golang.org/welcome/1)
 
-#### Charts.js:
+#### Chart.js:
  - [Bar Chart](https://www.chartjs.org/docs/latest/charts/bar.html)
  - [Pie Chart](https://www.chartjs.org/docs/latest/charts/doughnut.html)
